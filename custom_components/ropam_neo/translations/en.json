@@ -1,0 +1,77 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Ropam Neo panel",
+        "description": "Local connection data (same as the RopamNeo app). Mobile app access must be enabled in the panel.",
+        "data": {
+          "host": "Panel IP address",
+          "port": "Port",
+          "device_id": "Panel ID",
+          "tcp_key": "TCP/IP key",
+          "user_code": "User code"
+        },
+        "data_description": {
+          "host": "Local IP of the panel (reserve it in your router).",
+          "port": "Default 9999.",
+          "device_id": "16-character ID from NeoGSM-IP Manager (or the RopamNeo app QR code).",
+          "tcp_key": "Application encryption key from the Manager communication tab.",
+          "user_code": "User code with app permission. Used to log in and to arm/disarm."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the panel (IP/port, network).",
+      "busy": "Panel busy - another connection is active.",
+      "bad_dialog": "Unexpected response - check the panel ID.",
+      "bad_tcp_key": "Wrong TCP/IP key.",
+      "invalid_auth": "Wrong user code.",
+      "no_permission": "The user has no app permission.",
+      "login_locked": "Login locked by the panel (too many attempts). Wait.",
+      "login_rejected": "The panel rejected the login.",
+      "missing_device_id": "Enter the panel ID.",
+      "missing_tcp_key": "Enter the TCP/IP key.",
+      "missing_user_code": "Enter the user code.",
+      "unknown": "Unexpected error - see the Ropam Neo tab."
+    },
+    "abort": {
+      "already_configured": "This panel is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Connection data",
+        "description": "Local connection data (same as the RopamNeo app). Mobile app access must be enabled in the panel.",
+        "data": {
+          "host": "Panel IP address",
+          "port": "Port",
+          "device_id": "Panel ID",
+          "tcp_key": "TCP/IP key",
+          "user_code": "User code"
+        },
+        "data_description": {
+          "host": "Local IP of the panel (reserve it in your router).",
+          "port": "Default 9999.",
+          "device_id": "16-character ID from NeoGSM-IP Manager (or the RopamNeo app QR code).",
+          "tcp_key": "Application encryption key from the Manager communication tab.",
+          "user_code": "User code with app permission. Used to log in and to arm/disarm."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the panel (IP/port, network).",
+      "busy": "Panel busy - another connection is active.",
+      "bad_dialog": "Unexpected response - check the panel ID.",
+      "bad_tcp_key": "Wrong TCP/IP key.",
+      "invalid_auth": "Wrong user code.",
+      "no_permission": "The user has no app permission.",
+      "login_locked": "Login locked by the panel (too many attempts). Wait.",
+      "login_rejected": "The panel rejected the login.",
+      "missing_device_id": "Enter the panel ID.",
+      "missing_tcp_key": "Enter the TCP/IP key.",
+      "missing_user_code": "Enter the user code.",
+      "unknown": "Unexpected error - see the Ropam Neo tab."
+    }
+  }
+}

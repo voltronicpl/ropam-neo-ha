@@ -1,0 +1,77 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Centrala Ropam Neo",
+        "description": "Dane połączenia lokalnego (jak w aplikacji RopamNeo). W centrali musi być włączona obsługa aplikacji mobilnej.",
+        "data": {
+          "host": "Adres IP centrali",
+          "port": "Port",
+          "device_id": "ID centrali",
+          "tcp_key": "Klucz TCP/IP",
+          "user_code": "Kod użytkownika"
+        },
+        "data_description": {
+          "host": "Lokalny adres IP centrali (najlepiej zarezerwowany w routerze).",
+          "port": "Domyślnie 9999.",
+          "device_id": "16-znakowe ID z programu NeoGSM-IP Manager (lub z kodu QR aplikacji RopamNeo).",
+          "tcp_key": "Klucz szyfrowania aplikacji z zakładki komunikacji w Managerze.",
+          "user_code": "Kod użytkownika z prawem do aplikacji. Używany do logowania oraz uzbrajania i rozbrajania."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nie można połączyć z centralą (IP/port, sieć).",
+      "busy": "Centrala zajęta - inne połączenie (np. aplikacja RopamNeo w sieci lokalnej).",
+      "bad_dialog": "Centrala odpowiedziała nieoczekiwanie - sprawdź ID centrali.",
+      "bad_tcp_key": "Zły klucz TCP/IP.",
+      "invalid_auth": "Zły kod użytkownika.",
+      "no_permission": "Użytkownik nie ma uprawnień do aplikacji.",
+      "login_locked": "Logowanie zablokowane przez centralę (za dużo błędnych prób). Odczekaj.",
+      "login_rejected": "Centrala odrzuciła logowanie.",
+      "missing_device_id": "Podaj ID centrali.",
+      "missing_tcp_key": "Podaj klucz TCP/IP.",
+      "missing_user_code": "Podaj kod użytkownika.",
+      "unknown": "Nieoczekiwany błąd - szczegóły w zakładce Ropam Neo."
+    },
+    "abort": {
+      "already_configured": "Ta centrala jest już dodana."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Dane połączenia",
+        "description": "Dane połączenia lokalnego (jak w aplikacji RopamNeo). W centrali musi być włączona obsługa aplikacji mobilnej.",
+        "data": {
+          "host": "Adres IP centrali",
+          "port": "Port",
+          "device_id": "ID centrali",
+          "tcp_key": "Klucz TCP/IP",
+          "user_code": "Kod użytkownika"
+        },
+        "data_description": {
+          "host": "Lokalny adres IP centrali (najlepiej zarezerwowany w routerze).",
+          "port": "Domyślnie 9999.",
+          "device_id": "16-znakowe ID z programu NeoGSM-IP Manager (lub z kodu QR aplikacji RopamNeo).",
+          "tcp_key": "Klucz szyfrowania aplikacji z zakładki komunikacji w Managerze.",
+          "user_code": "Kod użytkownika z prawem do aplikacji. Używany do logowania oraz uzbrajania i rozbrajania."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nie można połączyć z centralą (IP/port, sieć).",
+      "busy": "Centrala zajęta - inne połączenie (np. aplikacja RopamNeo w sieci lokalnej).",
+      "bad_dialog": "Centrala odpowiedziała nieoczekiwanie - sprawdź ID centrali.",
+      "bad_tcp_key": "Zły klucz TCP/IP.",
+      "invalid_auth": "Zły kod użytkownika.",
+      "no_permission": "Użytkownik nie ma uprawnień do aplikacji.",
+      "login_locked": "Logowanie zablokowane przez centralę (za dużo błędnych prób). Odczekaj.",
+      "login_rejected": "Centrala odrzuciła logowanie.",
+      "missing_device_id": "Podaj ID centrali.",
+      "missing_tcp_key": "Podaj klucz TCP/IP.",
+      "missing_user_code": "Podaj kod użytkownika.",
+      "unknown": "Nieoczekiwany błąd - szczegóły w zakładce Ropam Neo."
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "domain": "ropam_neo",
+  "name": "Ropam Neo",
+  "codeowners": ["@voltronicpl"],
+  "config_flow": true,
+  "dependencies": ["frontend", "http", "websocket_api"],
+  "documentation": "https://github.com/voltronicpl/ropam-neo-ha",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/voltronicpl/ropam-neo-ha/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
