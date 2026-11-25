@@ -51,6 +51,10 @@ async def test_full_session(socket_enabled):
         assert arm == bytes([1, 1]) + b"1234"
         so = [d for t, d in c.received if t == P.T_SETOUTS][0]
         assert so == b"1" + b"x" * 31
+        await cl.panic()
+        await asyncio.sleep(0.3)
+        assert any(t == P.T_PANIC for t, _ in c.received)
+        assert cl.state.status.zones[0].alarm
         d = cl.diagnostics()
         txt = str(d)
         assert S.TCP_KEY not in txt and S.DEVICE_ID not in txt and "+48000000000" not in txt

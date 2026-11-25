@@ -48,14 +48,16 @@
           "port": "Port",
           "device_id": "ID centrali",
           "tcp_key": "Klucz TCP/IP",
-          "user_code": "Kod użytkownika"
+          "user_code": "Kod użytkownika",
+          "panic_button": "Pokaż przycisk alarmu napadowego"
         },
         "data_description": {
           "host": "Lokalny adres IP centrali (najlepiej zarezerwowany w routerze).",
           "port": "Domyślnie 9999.",
           "device_id": "16-znakowe ID z programu NeoGSM-IP Manager (lub z kodu QR aplikacji RopamNeo).",
           "tcp_key": "Klucz szyfrowania aplikacji z zakładki komunikacji w Managerze.",
-          "user_code": "Kod użytkownika z prawem do aplikacji. Używany do logowania oraz uzbrajania i rozbrajania."
+          "user_code": "Kod użytkownika z prawem do aplikacji. Używany do logowania oraz uzbrajania i rozbrajania.",
+          "panic_button": "Przycisk wywołuje alarm napadowy w centrali (syrena, powiadomienia)."
         }
       }
     },

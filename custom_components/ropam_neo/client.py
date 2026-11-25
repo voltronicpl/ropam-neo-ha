@@ -30,6 +30,7 @@ from .protocol import (
     T_LOGOUT,
     T_MESSAGE,
     T_NACK,
+    T_PANIC,
     T_PING,
     T_SETOUTS,
     T_SILENT_CLOSE,
@@ -245,6 +246,10 @@ class RopamNeoClient:
             count = len(self.state.status.outputs)
         mask = output_mask(count, index, on)
         await self._send(T_SETOUTS, mask, log_text=mask.decode())
+
+    async def panic(self) -> None:
+        """Alarm napadowy (jak przycisk PANIC w aplikacji RopamNeo)."""
+        await self._send(T_PANIC, b"", log_text="ALARM NAPADOWY")
 
     async def request_config(self) -> None:
         await self._send(T_GETCONFIG, b"")
@@ -550,7 +555,7 @@ class RopamNeoClient:
         if ftype in (T_PING, T_ACK):
             self._add_log("RX", f"{frame.name}({ftype})")
             return
-        if ftype in (T_NACK, T_ARM, T_DISARM, T_SETOUTS):
+        if ftype in (T_NACK, T_ARM, T_DISARM, T_SETOUTS, T_PANIC):
             self._add_log(
                 "RX", f"{frame.name}({ftype}) {frame.data.hex(' ') if frame.data else ''}"
             )

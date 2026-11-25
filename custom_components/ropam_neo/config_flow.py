@@ -11,6 +11,7 @@ from homeassistant.config_entries import ConfigFlow, ConfigFlowResult, OptionsFl
 from homeassistant.const import CONF_HOST, CONF_PORT
 from homeassistant.core import callback
 from homeassistant.helpers.selector import (
+    BooleanSelector,
     NumberSelector,
     NumberSelectorConfig,
     NumberSelectorMode,
@@ -22,6 +23,7 @@ from homeassistant.helpers.selector import (
 from .client import LoginInfo, NeoError, RopamNeoClient
 from .const import (
     CONF_DEVICE_ID,
+    CONF_PANIC_BUTTON,
     CONF_TCP_KEY,
     CONF_USER_CODE,
     DEFAULT_PORT,
@@ -124,18 +126,27 @@ class RopamNeoOptionsFlow(OptionsFlow):
     ) -> ConfigFlowResult:
         errors: dict[str, str] = {}
         defaults = dict(self.config_entry.data)
+        panic = self.config_entry.options.get(CONF_PANIC_BUTTON, True)
         if user_input is not None:
             data = _clean(user_input)
+            panic = bool(user_input.get(CONF_PANIC_BUTTON, True))
             defaults = data
-            _, error = await _validate(data)
+            changed = any(
+                data[k] != self.config_entry.data.get(k)
+                for k in (CONF_HOST, CONF_PORT, CONF_DEVICE_ID, CONF_TCP_KEY, CONF_USER_CODE)
+            )
+            # test połączenia tylko gdy zmieniły się dane połączenia
+            error = (await _validate(data))[1] if changed else None
             if error is None:
-                self.hass.config_entries.async_update_entry(
-                    self.config_entry,
-                    data=data,
-                    title=f"Ropam Neo ({data[CONF_HOST]})",
-                )
-                return self.async_create_entry(data={})
+                if changed:
+                    self.hass.config_entries.async_update_entry(
+                        self.config_entry,
+                        data=data,
+                        title=f"Ropam Neo ({data[CONF_HOST]})",
+                    )
+                return self.async_create_entry(data={CONF_PANIC_BUTTON: panic})
             errors["base"] = error
-        return self.async_show_form(
-            step_id="init", data_schema=_schema(defaults), errors=errors
+        schema = _schema(defaults).extend(
+            {vol.Required(CONF_PANIC_BUTTON, default=panic): BooleanSelector()}
         )
+        return self.async_show_form(step_id="init", data_schema=schema, errors=errors)

@@ -48,14 +48,16 @@
           "port": "Port",
           "device_id": "Panel ID",
           "tcp_key": "TCP/IP key",
-          "user_code": "User code"
+          "user_code": "User code",
+          "panic_button": "Show panic alarm button"
         },
         "data_description": {
           "host": "Local IP of the panel (reserve it in your router).",
           "port": "Default 9999.",
           "device_id": "16-character ID from NeoGSM-IP Manager (or the RopamNeo app QR code).",
           "tcp_key": "Application encryption key from the Manager communication tab.",
-          "user_code": "User code with app permission. Used to log in and to arm/disarm."
+          "user_code": "User code with app permission. Used to log in and to arm/disarm.",
+          "panic_button": "Adds a button that triggers the panel's panic alarm (siren, notifications)."
         }
       }
     },

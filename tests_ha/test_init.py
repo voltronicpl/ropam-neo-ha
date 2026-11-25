@@ -87,6 +87,32 @@ async def test_setup_with_simulator(hass, no_frontend, socket_enabled):
             break
     assert hass.states.get(zone.entity_id).state == "armed_away"
 
+    panic = next(e for e in states if e.startswith("button."))
+    await hass.services.async_call("button", "press", {"entity_id": panic}, blocking=True)
+    for _ in range(20):
+        await asyncio.sleep(0.05)
+        await hass.async_block_till_done()
+        if hass.states.get(zone.entity_id).state == "triggered":
+            break
+    assert hass.states.get(zone.entity_id).state == "triggered"
+    assert any(t == 42 for t, _ in central.received)
+
     assert await hass.config_entries.async_unload(entry.entry_id)
     await hass.async_block_till_done()
     server.close()
+
+
+async def test_options_toggle_panic_without_reconnect(hass, no_frontend):
+    entry = MockConfigEntry(domain=DOMAIN, data=DATA, unique_id=S.DEVICE_ID)
+    entry.add_to_hass(hass)
+    result = await hass.config_entries.options.async_init(entry.entry_id)
+    assert result["type"] is FlowResultType.FORM
+    with patch(
+        "custom_components.ropam_neo.config_flow.RopamNeoClient.async_test"
+    ) as test:
+        result = await hass.config_entries.options.async_configure(
+            result["flow_id"], {**DATA, "panic_button": False}
+        )
+    assert result["type"] is FlowResultType.CREATE_ENTRY
+    assert entry.options["panic_button"] is False
+    test.assert_not_called()

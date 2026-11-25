@@ -90,6 +90,9 @@ async def handle(reader, writer, c: Central, mode="ok"):
                 if ch in "01" and c.outputs[i] in "01":
                     c.outputs[i] = ch
             send(P.T_STATUS, c.status_text().encode(), vec)
+        elif f.ftype == P.T_PANIC:
+            c.zones[0] |= 0x10
+            send(P.T_PANIC, b"", vec); send(P.T_STATUS, c.status_text().encode(), vec)
         elif f.ftype == P.T_PING:
             send(P.T_PING, b"", vec)
         elif f.ftype == P.T_LOGOUT:

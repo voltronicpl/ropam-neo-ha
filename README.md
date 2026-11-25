@@ -12,6 +12,7 @@ Integracja HACS dla central alarmowych **Ropam serii Neo-IP**: NeoLTE-IP, NeoLTE
 | `binary_sensor` | Wejścia (czujki). Atrybuty: sabotaż, pamięć alarmu, blokada, awaria, słaba bateria |
 | `switch` | Wyjścia, którymi wolno sterować z aplikacji |
 | `binary_sensor` | Wyjścia bez prawa sterowania (tylko stan), sabotaż stref, zasilanie 230V, połączenie |
+| `button` | **Alarm napadowy** (jak PANIC w aplikacji). Można go ukryć w opcjach integracji |
 | `sensor` | Temperatury (TSR), wejście analogowe AI, napięcie zasilania, wilgotność, ostatni komunikat z centrali |
 
 Nazwy wejść, wyjść i stref pobierane są z konfiguracji centrali.
@@ -34,7 +35,9 @@ Komunikaty z centrali (np. „nie można uzbroić”) trafiają do sensora *Osta
 | Klucz TCP/IP | Klucz szyfrowania aplikacji (NeoGSM-IP Manager → komunikacja) |
 | Kod użytkownika | Kod użytkownika z uprawnieniem do aplikacji. Służy do logowania oraz do uzbrajania i rozbrajania |
 
-Dane można zmienić później: karta integracji → **Konfiguruj**.
+Dane można zmienić później: karta integracji → **Konfiguruj**. Tam jest też przełącznik **Pokaż przycisk alarmu napadowego** (domyślnie włączony). Jeśli zmienisz tylko ten przełącznik, integracja nie testuje ponownie połączenia.
+
+> Przycisk alarmu napadowego naprawdę wywołuje alarm w centrali: syrenę, powiadomienia, a jeśli masz monitoring, także zgłoszenie do ochrony.
 
 Dane są zapisywane tylko w konfiguracji HA. W logach i diagnostyce są maskowane.
 
